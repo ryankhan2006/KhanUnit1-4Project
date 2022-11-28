@@ -4,37 +4,30 @@ import java.util.Scanner;
 
 
 public class StoreSimulatorRunner {
-    //colors
+
     public static void main(String[] args) {
-        final String RED = "\033[0;31m";     // RED
-        final String GREEN = "\033[0;32m";   // GREEN
-        final String PURPLE = "\033[0;35m";  // PURPLE
-        final String CYAN = "\033[0;36m";    // CYAN
-        final String RESET = "\u001B[0m";
-
-
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner s = new Scanner(System.in);
-        StoreSimulator start = new StoreSimulator();
+        StoreSimulator official = new StoreSimulator();
         //introductions and rules
-        System.out.println(PURPLE + "Welcome to The Local Market! Below are our items and prices." + RESET);
-        System.out.println(CYAN + start.toString() + RESET);
-        System.out.println(RED + "Are you ready to begin? Enter Yes to begin." + RESET);
+        System.out.println("Welcome to The Local Market! Below are our items and prices." );
+        System.out.println(official.toString());
+        System.out.println("Are you ready to begin? Enter Yes to begin." );
         String answer = s.nextLine();
-        boolean st = start.willSimulationRun(answer);
+        boolean random = official.willSimulationRun(answer);
         System.out.println();
-        System.out.println(GREEN + "Before you begin, note these rules: \n 1: You can enter -1 to get a random number of items up to 25. \n 2: Any number less than -1 or higher than Java's max integer will automatically be inputted as 0. \n 3: If you do not wish to not buy an item then enter 0." + RESET);
+        System.out.println("Before you begin, note these rules: \n 1: You can enter -1 to get a random number of items up to 25. \n 2: Any number less than -1 or higher than Java's max integer will automatically be inputted as 0. \n 3: If you do not wish to not buy an item then enter 0.");
         System.out.println();
 
         //running the method/calculations
-        while (st == true) {
-            System.out.println("How many apples would you like to buy?");
-            int a = s.nextInt();
-            a = start.random(a);
-            if (start.checkForNegatives(a) == true || a > Integer.MAX_VALUE) {
-                a = 0;
+        while (random == true) {
+            System.out.println("How many pounds of strawberries would you like to buy?");
+            int input = s.nextInt();
+            input = start.random(input);
+            if (start.checkForNegatives(input) == true || input > Integer.MAX_VALUE) {
+                input = 0;
             }
-            start.numApples(a);
+            start.numstrawBerry(input);
             System.out.println();
 
             System.out.println("How many bananas would you like to buy?");
